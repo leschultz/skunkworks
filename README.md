@@ -1,4 +1,4 @@
-Introductory Skunworks Project
+Introductory Skunkworks Project
 
 Group Members Include:
 
