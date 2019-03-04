@@ -2,11 +2,11 @@
 Use the suport vector machine provided by scikit learn for ehull prediction.
 '''
 
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
 from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.feature_selection import RFECV
-from sklearn.metrics import r2_score
 from sklearn import preprocessing
-from sklearn import svm
+from sklearn.kernel_ridge import KernelRidge
 
 from matplotlib import pyplot as pl
 
@@ -40,8 +40,9 @@ X_train_scaled = preprocessing.scale(X_train)
 X_test_scaled = preprocessing.scale(X_test)
 
 # Select the model
-clf = svm.SVR(kernel='linear')
+clf = KernelRidge(kernel='rbf')
 
+'''
 # Feature elimiation to determine important features
 rfecv = RFECV(
               estimator=clf,
@@ -53,14 +54,20 @@ rfecv.fit(X_train_scaled, y_train)
 
 print(rfecv.ranking_)
 
+'''
+
 # Train the model
 clf.fit(X_train_scaled, y_train)
 
 # Predict with trained model
 y_pred = clf.predict(X_test_scaled)
 
-# Evaluate the coefficient of determination
-r2 = r2_score(y_test, y_pred)
+# Error Metrics
+r2 = r2_score(y_test, y_pred)  # Coefficient of determination
+mse = mean_squared_error(y_test, y_pred)  # Mean squared error
+mae = mean_absolute_error(y_test, y_pred)  # Mean absolute error
+
+print(mse)
 
 # Plot the true versus predicted values
 fig, ax = pl.subplots()
@@ -68,10 +75,10 @@ ax.scatter(
            y_test,
            y_pred,
            marker='.',
-           label=r'$R^{2}$='+str(r2)
            )
 
-ax.legend(loc='lower right')
+textbox = r'$R^{2}$='+str(r2)+'\n'+r'MSE='+str(mse)+'\n'+r'MAE='+str(mae)
+ax.legend([textbox])
 ax.set_xlabel('True Values')
 ax.set_ylabel('Predicted Values')
 ax.grid()
