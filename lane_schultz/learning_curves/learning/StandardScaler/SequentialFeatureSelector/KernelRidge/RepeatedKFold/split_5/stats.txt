@@ -1,0 +1,10 @@
+TRAIN:
+R2: 0.767
+root_mean_squared_error: 46.938
+mean_absolute_error: 31.819
+rmse_over_stdev: 0.487
+TEST:
+R2: 0.739
+root_mean_squared_error: 46.676
+mean_absolute_error: 33.172
+rmse_over_stdev: 0.484
