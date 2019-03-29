@@ -35,8 +35,12 @@ df['oxides'] = np.nan
 df['oxide_e_per_atom'] = np.nan
 df['e_per_atom-sum(oxide_e_per_atom)'] = np.nan
 
+n = str(len(df)-1)
+
 count = 0
 for row, e in zip(df['composition'], df['e_per_atom']):
+    print(str(count)+'/'+str(n)+' Working on: '+str(row))
+
     elements = re.findall('[A-Z][a-z]?|[0-9]+', row)
     elements = [i for i in elements if not i.isdigit()]
 
