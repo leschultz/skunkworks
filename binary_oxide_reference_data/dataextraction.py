@@ -37,7 +37,9 @@ for row in df['composition']:
 
 
     # Oxide energies
+    print(row)
+    print(oxidechoices)
     reactants = [mpr.query(i, ['energy']) for i in oxidechoices]
+
     print(reactants)
     # Calculate reaction energies
-    print(products)
