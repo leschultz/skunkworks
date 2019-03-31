@@ -31,7 +31,7 @@ step = 1
 df = pd.read_excel(mergepath)
 
 # Remove select data
-drop_features = ['composition', 'oxides']
+drop_features = ['composition', 'oxides', 'e_per_atom-sum(oxide_e_per_atom)']
 df = df.drop(drop_features, axis=1)
 
 # The data set divided into features and the target
@@ -48,9 +48,8 @@ X_train_scaled = scaler.transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 estimator = KernelRidge(kernel='rbf')
-selector = SelectKBest(mutual_info_regression, k=5)
+selector = SelectKBest(mutual_info_regression, k=60)
 
-# Feature selection
 X_train_select = selector.fit_transform(X_train_scaled, y_train)
 index_select = selector.get_support(indices=True)
 X_test_select = X_test_scaled[:, index_select]

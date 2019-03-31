@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+
+'''
+Use the suport vector machine provided by scikit learn for ehull prediction.
+'''
+
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from sklearn.model_selection import train_test_split, StratifiedKFold
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import mutual_info_regression
+from sklearn.kernel_ridge import KernelRidge
+from sklearn import preprocessing
+
+from matplotlib import pyplot as pl
+
+import pandas as pd
+import numpy as np
+
+import os
+
+# Paths to data
+path = '../../data'
+mergepath = os.path.join(path, 'merged.xlsx')
+
+target = 'energy'  # Target
+split = 0.1  # Split for training and testing
+strat_splits = 5  # The splits for stratified cross validation
+step = 1
+
+# Import the data
+df = pd.read_excel(mergepath)
+
+# Remove select data
+drop_features = ['composition', 'oxides', 'e_per_atom-sum(oxide_e_per_atom)']
+df = df.drop(drop_features, axis=1)
+
+# The data set divided into features and the target
+X = df.loc[:, df.columns != target].values
+y = df[target].values
+
+# Split the data into training and testing sets
+split = train_test_split(X, y, test_size=split)
+X_train, X_test, y_train, y_test = split
+
+# Process the data to reduce bias from feature scales
+scaler = preprocessing.StandardScaler().fit(X_train)
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+estimator = KernelRidge(kernel='rbf')
+
+# Feature selection
+
+r2 = []
+mse = []
+mae = []
+ks = []
+
+k = 1
+while k <= 100:
+    selector = SelectKBest(mutual_info_regression, k=k)
+    X_train_select = selector.fit_transform(X_train_scaled, y_train)
+    index_select = selector.get_support(indices=True)
+    X_test_select = X_test_scaled[:, index_select]
+
+    selected_features = df.columns[index_select]
+
+    # Train the model
+    estimator.fit(X_train_select, y_train)
+
+    # Predict with trained model
+    y_pred = estimator.predict(X_test_select)
+
+    # Error Metrics
+    r2.append(r2_score(y_test, y_pred))  # Coefficient of determination
+    mse.append(mean_squared_error(y_test, y_pred))  # Mean squared error
+    mae.append(mean_absolute_error(y_test, y_pred))  # Mean absolute error
+    ks.append(k)  # The number of features selected
+
+    k += 1
+
+# Plot the true versus predicted values
+fig, ax = pl.subplots()
+ax.scatter(
+           ks,
+           mse,
+           marker='.',
+           )
+
+ax.set_xlabel('Number of Features')
+ax.set_ylabel('MSE')
+
+ax.grid()
+pl.savefig('features_mse')
+
+# Plot the true versus predicted values
+fig, ax = pl.subplots()
+ax.scatter(
+           ks,
+           mae,
+           marker='.',
+           )
+
+ax.set_xlabel('Number of Features')
+ax.set_ylabel('MAE')
+
+ax.grid()
+pl.savefig('features_mae')
