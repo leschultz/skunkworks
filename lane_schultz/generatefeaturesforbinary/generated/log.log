@@ -1,0 +1,25 @@
+[INFO] 2019-03-29 13:54:18,893 : 
+
+   __  ___     __________    __  _____
+  /  |/  /__ _/ __/_  __/___/  |/  / /
+ / /|_/ / _ `/\ \  / / /___/ /|_/ / /__
+/_/  /_/\_,_/___/ /_/     /_/  /_/____/
+
+
+MAST-ML run on 2019-03-29 18:54:18 using 
+conf file: model.conf
+csv file:  binaryoxidesreference.csv
+saving to: generated
+
+
+[INFO] 2019-03-29 13:54:18,893 : Copying input files to output directory...
+[ERROR] 2019-03-29 13:54:18,901 : A runtime exception has occured, please go to https://github.com/uw-cmg/MAST-ML/issues and post your issue.
+[ERROR] 2019-03-29 13:54:18,902 : Data file does not have column 'Energy above convex hull (meV/atom)'
+Traceback (most recent call last):
+  File "/home/nerve/Tools/MAST-ML/mastml/mastml_driver.py", line 61, in main
+    mastml_run(conf_path, data_path, outdir)
+  File "/home/nerve/Tools/MAST-ML/mastml/mastml_driver.py", line 110, in mastml_run
+    conf['GeneralSetup']['not_input_features'])
+  File "/home/nerve/Tools/MAST-ML/mastml/data_loader.py", line 60, in load_data
+    raise Exception(f"Data file does not have column '{feature}'")
+Exception: Data file does not have column 'Energy above convex hull (meV/atom)'

@@ -1,0 +1,74 @@
+[INFO] 2019-03-29 13:54:45,788 : 
+
+   __  ___     __________    __  _____
+  /  |/  /__ _/ __/_  __/___/  |/  / /
+ / /|_/ / _ `/\ \  / / /___/ /|_/ / /__
+/_/  /_/\_,_/___/ /_/     /_/  /_/____/
+
+
+MAST-ML run on 2019-03-29 18:54:45 using 
+conf file: model.conf
+csv file:  binaryoxidesreference.csv
+saving to: generated_03_29_13_54_45
+
+
+[INFO] 2019-03-29 13:54:45,788 : Copying input files to output directory...
+[INFO] 2019-03-29 13:54:45,797 : blacklisted features, either from "not_input_features" or a "grouping_column":[]
+[WARNING] 2019-03-29 13:54:45,798 : You have chosen not to specify a method of data_cleaning in the input file. By default, any feature entries containing NaN will result in removal of the feature and any target data entries containing NaN will result in removal of that target data point.
+[DEBUG] 2019-03-29 13:54:46,790 : splitter_to_group_names:
+{}
+[DEBUG] 2019-03-29 13:54:46,791 : models, pre-snatching: 
+OrderedDict()
+[DEBUG] 2019-03-29 13:54:46,791 : models, post-snatching: 
+OrderedDict()
+[DEBUG] 2019-03-29 13:54:46,791 : instantiation: Magpie, Magpie({'composition_feature': 'composition'})
+[DEBUG] 2019-03-29 13:54:46,791 : instantiation: DoNothing, DoNothing({})
+[DEBUG] 2019-03-29 13:54:46,791 : instantiation: NoSplit, NoSplit({})
+[DEBUG] 2019-03-29 13:54:46,791 : cv, pre-snatching: 
+OrderedDict([('NoSplit', NoSplit())])
+[DEBUG] 2019-03-29 13:54:46,791 : cv, post-snatching: 
+OrderedDict([('NoSplit', NoSplit())])
+[DEBUG] 2019-03-29 13:54:46,791 : instantiation: DoNothing, DoNothing({})
+[DEBUG] 2019-03-29 13:54:46,792 : generators: 
+[['Magpie', Magpie(composition_feature='composition')]]
+[DEBUG] 2019-03-29 13:54:46,792 : clusterers: 
+[]
+[DEBUG] 2019-03-29 13:54:46,792 : normalizers: 
+[['DoNothing', DoNothing()]]
+[DEBUG] 2019-03-29 13:54:46,792 : hyperopts: 
+[]
+[DEBUG] 2019-03-29 13:54:46,792 : selectors: 
+[['DoNothing', DoNothing()]]
+[DEBUG] 2019-03-29 13:54:46,792 : splitters: 
+[('NoSplit', NoSplit())]
+[INFO] 2019-03-29 13:54:46,792 : There are 1 feature normalizers, 0 hyperparameter optimziers, 1 feature selectors, 0 models, and 1 splitters.
+[INFO] 2019-03-29 13:54:46,792 : Doing feature generation...
+[WARNING] 2019-03-29 13:55:43,191 : Dropping 293/957 generated columns due to missing values
+[INFO] 2019-03-29 13:55:43,291 : Saving generated data to csv...
+[DEBUG] 2019-03-29 13:55:43,292 : generated cols: Index(['valence_composition_average', 'MiracleRadius_composition_average',
+       'GSmagmom_composition_average', 'Group_composition_average',
+       'SpecificHeatCapacity_composition_average',
+       'IsPnictide_composition_average', 'IsAlkali_composition_average',
+       'IsAlkalineEarth_composition_average', 'NpValence_composition_average',
+       'IonizationEnergy_composition_average',
+       ...
+       'Site3_IsMetal', 'Site3_NdValence', 'Site3_Row', 'Site3_AtomicNumber',
+       'Site3_Electronegativity', 'Site3_BoilingT', 'Site3_ElectronAffinity',
+       'Site3_NsUnfilled', 'Site3_SpaceGroupNumber', 'Site3_AtomicRadii'],
+      dtype='object', length=664)
+[INFO] 2019-03-29 13:55:44,330 : Removing constant features, regardless of feature selectors.
+[WARNING] 2019-03-29 13:55:44,354 : Removed 85/664 constant columns.
+[DEBUG] 2019-03-29 13:55:44,354 : Removed the following constant columns: ['Site3_IsMonoclinic', 'IsMonoclinic_composition_average', 'IsHalogen_difference', 'Site3_GSbandgap', 'Site3_IsHalogen', 'GSestBCClatcnt_min_value', 'IsNobleGas_composition_average', 'IsNobleGas_min_value', 'IsMetalloid_min_value', 'Site3_IsMetalloid', 'Site2_IsHalogen', 'Site3_IsNobleGas', 'Electronegativity_max_value', 'GSenergy_pa_difference', 'Density_min_value', 'Group_max_value', 'IsMonoclinic_difference', 'SpaceGroupNumber_min_value', 'Site1_IsNobleGas', 'Site1_IsRhombohedral', 'IsAlkali_composition_average', 'IsAlkali_max_value', 'ThermalConductivity_min_value', 'IsMonoclinic_max_value', 'CovalentRadius_min_value', 'Site1_IsTetragonal', 'AtomicWeight_min_value', 'Site1_IsHalogen', 'SecondIonizationEnergy_max_value', 'BCCvolume_pa_min_value', 'Site2_IsAlkali', 'AtomicRadii_min_value', 'Row_min_value', 'IsMonoclinic_min_value', 'Site1_IsMetalloid', 'IsNobleGas_max_value', 'IsMetal_max_value', 'IsHalogen_max_value', 'NsValence_max_value', 'Site2_IsNobleGas', 'IsNobleGas_difference', 'MeltingT_min_value', 'Site1_IsPnictide', 'GSvolume_pa_min_value', 'Site1_IsAlkali', 'IsHalogen_arithmetic_average', 'IsNobleGas_arithmetic_average', 'IsAlkali_difference', 'IonizationEnergy_max_value', 'HeatFusion_min_value', 'FirstIonizationEnergy_max_value', 'Site1_IsBoron', 'Period_min_value', 'AtomicNumber_min_value', 'valence_min_value', 'MiracleRadius_min_value', 'IsChalcogen_max_value', 'IsHalogen_composition_average', 'GSestFCClatcnt_min_value', 'IsAlkali_min_value', 'GSbandgap_min_value', 'MendeleevNumber_max_value', 'HHIr_min_value', 'CovalentRadii_min_value', 'IsSimpleCubic_max_value', 'HeatVaporization_min_value', 'Number_min_value', 'IsHalogen_min_value', 'BCCenergy_pa_difference', 'HHIp_min_value', 'IsAlkali_arithmetic_average', 'IsMonoclinic_arithmetic_average', 'Site2_IsMonoclinic', 'Site1_IsMonoclinic', 'IsAlkalineEarth_min_value', 'NpValence_max_value', 'Site1_IsCarbon', 'Column_max_value', 'AtomicVolume_max_value', 'Site1_IsOrthorhombic', 'Site3_IsAlkali', 'BoilingT_min_value', 'BCCefflatcnt_min_value', 'Site1_GSbandgap', 'IsNonmetal_max_value']
+[INFO] 2019-03-29 13:55:44,354 : Saving generated data without constant columns to csv...
+[INFO] 2019-03-29 13:55:45,278 : Doing clustering...
+[INFO] 2019-03-29 13:55:45,278 : Saving clustered data to csv...
+[INFO] 2019-03-29 13:55:46,190 : Running normalizer DoNothing ...
+[INFO] 2019-03-29 13:55:46,190 : Saving normalized data to csv...
+[INFO] 2019-03-29 13:55:47,102 : Running selectors...
+[INFO] 2019-03-29 13:55:47,102 :     Running selector DoNothing ...
+[INFO] 2019-03-29 13:55:47,102 :     Saving selected features to csv...
+[DEBUG] 2019-03-29 13:55:48,009 : Finding splitter-required columns in data...
+[INFO] 2019-03-29 13:55:48,010 : Fitting models to splits...
+[INFO] 2019-03-29 13:55:48,010 : Making image html file...
+[INFO] 2019-03-29 13:55:48,011 : wrote /home/nerve/Desktop/skunkworks/lane_schultz/generatefeaturesforbinary/generated_03_29_13_54_45/index.html
+[INFO] 2019-03-29 13:55:48,011 : Making html file of all runs stats...
