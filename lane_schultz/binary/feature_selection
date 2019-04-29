@@ -58,6 +58,7 @@ ks = []
 
 k = 1
 while k <= 100:
+    print(k)
     selector = SelectKBest(mutual_info_regression, k=k)
     X_train_select = selector.fit_transform(X_train_scaled, y_train)
     index_select = selector.get_support(indices=True)
@@ -77,7 +78,7 @@ while k <= 100:
     mae.append(mean_absolute_error(y_test, y_pred))  # Mean absolute error
     ks.append(k)  # The number of features selected
 
-    k += 1
+    k += 10
 
 # Plot the true versus predicted values
 fig, ax = pl.subplots()
